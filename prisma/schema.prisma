@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Employee {
+  id              String   @id @default(uuid())
+  firstName       String   @map("first_name") @db.VarChar(100)
+  lastName        String   @map("last_name") @db.VarChar(100)
+  startDate       DateTime @map("start_date") @db.Date
+  birthDate       DateTime? @map("birth_date") @db.Date
+  timezone        String   @db.VarChar(50)
+  locationDisplay String   @map("location_display") @db.VarChar(255)
+  createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz()
+  updatedAt       DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+  deletedAt       DateTime? @map("deleted_at") @db.Timestamptz()
+
+  messageDeliveries MessageDelivery[]
+
+  @@index([startDate], map: "idx_employees_start_date")
+  @@index([birthDate], map: "idx_employees_birth_date")
+  @@index([deletedAt], map: "idx_employees_deleted_at")
+  @@map("employees")
+}
+
+model MessageDelivery {
+  id            String   @id @default(uuid())
+  employeeId    String   @map("employee_id")
+  messageType   MessageType @map("message_type")
+  scheduledDate DateTime @map("scheduled_date") @db.Date
+  scheduledTime DateTime @map("scheduled_time") @db.Timestamptz()
+  status        DeliveryStatus @default(PENDING)
+  attemptCount  Int      @default(0) @map("attempt_count")
+  lastAttemptAt DateTime? @map("last_attempt_at") @db.Timestamptz()
+  sentAt        DateTime? @map("sent_at") @db.Timestamptz()
+  errorMessage  String?  @map("error_message") @db.Text
+  jobId         String?  @map("job_id") @db.VarChar(255)
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz()
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@unique([employeeId, messageType, scheduledDate], map: "unique_employee_message_date")
+  @@index([status, scheduledTime], map: "idx_message_deliveries_status_time")
+  @@index([status, scheduledDate], map: "idx_message_deliveries_recovery")
+  @@map("message_deliveries")
+}
+
+enum MessageType {
+  ANNIVERSARY
+
+  @@map("message_type")
+}
+
+enum DeliveryStatus {
+  PENDING
+  SENT
+  FAILED
+
+  @@map("delivery_status")
+}
