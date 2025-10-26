@@ -3,6 +3,7 @@ node_modules/
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
+bun.lockb
 
 # Build output
 dist/
@@ -13,6 +14,7 @@ build/
 *.js
 *.js.map
 *.d.ts
+*.d.ts.map
 !jest.config.js
 !*.config.js
 
@@ -20,6 +22,11 @@ build/
 .env
 .env.local
 .env.*.local
+.env.production
+.env.development
+.env.test
+.env.ci
+.env.staging
 
 # Logs
 logs/
@@ -33,6 +40,9 @@ pino-*.log
 coverage/
 .nyc_output/
 *.lcov
+jest-results.json
+test-results.xml
+junit.xml
 
 # IDE
 .vscode/
@@ -41,6 +51,9 @@ coverage/
 *.swo
 *~
 .DS_Store
+Thumbs.db
+*.sublime-*
+*.code-workspace
 
 # Database
 *.db
@@ -48,14 +61,105 @@ coverage/
 *.sqlite3
 postgres-data/
 redis-data/
+mongo-data/
+mysql-data/
 
 # Prisma
 prisma/migrations/**/migration.sql
+prisma/dev.db
+prisma/dev.db-journal
+.prisma/
 
 # Docker
 docker-compose.override.yml
+.docker/
+docker-data/
 
 # Temporary files
 tmp/
 temp/
 *.tmp
+*.temp
+.cache/
+
+# OS generated files
+ehthumbs.db
+Desktop.ini
+
+# Package manager specific
+.npm
+.eslintcache
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+.coverage/
+.nyc_output/
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env.development.local
+.env.test.local
+.env.production.local
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# next.js build output
+.next
+
+# nuxt.js build output
+.nuxt
+
+# vuepress build output
+.vuepress/dist
+
+# Serverless directories
+.serverless/
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# TernJS port file
+.tern-port
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
