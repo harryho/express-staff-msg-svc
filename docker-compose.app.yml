@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: employee-message-svc-app
+    container_name: employee-staff-msg-svc-app
     restart: unless-stopped
     ports:
       - '3000:3000'
@@ -28,4 +28,4 @@ services:
 
 networks:
   default:
-    name: employee-message-svc-network
+    name: employee-staff-msg-svc-network

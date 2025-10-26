@@ -1,5 +1,5 @@
 {
-  "name": "express-staff-svc",
+  "name": "express-staff-msg-svc",
   "version": "1.0.0",
   "description": "Employee Message Service -  Express application",
   "main": "dist/index.js",

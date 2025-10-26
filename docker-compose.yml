@@ -3,7 +3,7 @@ version: '3.9'
 services:
   postgres:
     image: postgres:15-alpine
-    container_name: employee-message-svc-postgres
+    container_name: employee-staff-msg-svc-postgres
     restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
@@ -21,7 +21,7 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: employee-message-svc-redis
+    container_name: employee-staff-msg-svc-redis
     restart: unless-stopped
     command: redis-server --appendonly yes
     ports:
@@ -42,4 +42,4 @@ volumes:
 
 networks:
   default:
-    name: employee-message-svc-network
+    name: employee-staff-msg-svc-network
