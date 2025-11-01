@@ -35,37 +35,37 @@ A Express Node.js application that sends happy service anniversary messages to e
 
 ### 1. Clone and Install
 
-\`\`\`bash
+```bash
 git clone <repository-url>
 cd express-staff-msg-svc
 npm install
-\`\`\`
+```
 
 ### 2. Environment Configuration
 
-\`\`\`bash
+```bash
 cp .env.example .env
 # Edit .env with your configuration
-\`\`\`
+```
 
 ### 3. Start Infrastructure (Docker)
 
-\`\`\`bash
+```bash
 npm run docker:up
-\`\`\`
+```
 
 ### 4. Database Setup
 
-\`\`\`bash
+```bash
 npm run prisma:migrate
 npm run prisma:generate
-\`\`\`
+```
 
 ### 5. Run Development Server
 
-\`\`\`bash
+```bash
 npm run dev
-\`\`\`
+```
 
 The API will be available at `http://localhost:3000`
 
@@ -73,7 +73,7 @@ The API will be available at `http://localhost:3000`
 
 ### Create Employee
 
-\`\`\`bash
+```bash
 POST /api/v1/employee
 Content-Type: application/json
 
@@ -84,13 +84,13 @@ Content-Type: application/json
   "timezone": "Australia/Sydney",
   "locationDisplay": "New York, USA"
 }
-\`\`\`
+```
 
 ### Delete Employee
 
-\`\`\`bash
+```bash
 DELETE /api/v1/employee/:id
-\`\`\`
+```
 
 #### Get All Employees
 
@@ -114,24 +114,24 @@ GET /api/v1/queue/status
 
 ### Health Check
 
-\`\`\`bash
+```bash
 GET /health          # Comprehensive health status
 GET /ready           # Readiness probe (Kubernetes)
 GET /live            # Liveness probe (Kubernetes)
-\`\`\`
+```
 
 ### Metrics
 
-\`\`\`bash
+```bash
 GET /metrics         # Prometheus metrics
-\`\`\`
+```
 
 ### API Documentation
 
-\`\`\`bash
+```bash
 GET /api-docs        # Interactive Swagger UI
 GET /api-docs.json   # OpenAPI spec (JSON)
-\`\`\`
+```
 
 ## Monitoring & Observability
 
@@ -139,7 +139,7 @@ GET /api-docs.json   # OpenAPI spec (JSON)
 
 All requests include correlation IDs for distributed tracing:
 
-\`\`\`json
+```json
 {
   "level": "info",
   "correlationId": "550e8400-e29b-41d4-a716-446655440000",
@@ -149,7 +149,7 @@ All requests include correlation IDs for distributed tracing:
   "duration": 45,
   "message": "Request completed"
 }
-\`\`\`
+```
 
 ### Prometheus Metrics
 
@@ -191,7 +191,7 @@ To visualize metrics, you can create a Grafana dashboard using the available Pro
 
 ### Project Structure
 
-\`\`\`
+```
 src/
 ├── config/           # Configuration management
 ├── controllers/      # Request handlers
@@ -208,11 +208,11 @@ tests/
 ├── integration/     # API integration tests
 ├── unit/            # Unit tests
 └── utils/           # Test utilities
-\`\`\`
+```
 
 ## Testing
 
-\`\`\`bash
+```bash
 # Run all tests
 npm test
 
@@ -221,7 +221,7 @@ npm run test:coverage
 
 # Watch mode
 npm run test:watch
-\`\`\`
+```
 
 ## Deployment
 
